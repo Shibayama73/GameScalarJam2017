@@ -44,6 +44,9 @@ int PlayScene::InitializeGame()
 		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/clear.png", resource.GetAddressOf(),
 			m_texture.ReleaseAndGetAddressOf()));
 
+	mapRoom = new MapRoom();
+	mapRoom->Initialize(m_outputWidth, m_outputHeight);
+
 	return 0;
 }
 
@@ -64,6 +67,10 @@ void PlayScene::RenderGame()
 	m_spriteBatch->Begin(SpriteSortMode_Deferred, m_states.NonPremultiplied());
 	//	クリアー
 	m_spriteBatch->Draw(m_texture.Get(), Vector2(263.5f, 324.0f), nullptr, Colors::White, 0.0f);
+	
+	//	マップ部屋
+	mapRoom->Draw(&*m_spriteBatch);
+
 	this->m_spriteBatch->End();
 }
 

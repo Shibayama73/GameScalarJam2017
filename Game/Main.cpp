@@ -294,8 +294,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	if (FAILED(hr))
 		return 1;
 
-	int width = 1024;
-	int height = 768;
+	int width = 800;	//1024
+	int height = 600;	//768
 
 	// Windowオブジェクトを生成する
 	g_window = std::make_unique<Window>(hInstance, nCmdShow);

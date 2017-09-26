@@ -14,6 +14,7 @@
 #include <CommonStates.h>
 //#include <keyboard.h>
 #include "Keyboards.h"
+#include "MapRoom.h"
 
 class PlayScene :public SceneBase
 {
@@ -50,5 +51,7 @@ private:
 
 	DirectX::SimpleMath::Matrix m_view;
 	DirectX::SimpleMath::Matrix m_proj;
+
+	MapRoom* mapRoom;
 
 };

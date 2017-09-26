@@ -49,6 +49,9 @@
     <ClInclude Include="GameMain.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="MapRoom.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlayScene.cpp">
@@ -76,6 +79,9 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="GameMain.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRoom.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
