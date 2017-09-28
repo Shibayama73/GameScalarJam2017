@@ -51,7 +51,7 @@ int MapRoom::Initialize()
 		//	軸を決める
 		int randWidth = rnd() % 5;
 		int randHeight = rnd() % 5;
-		m_room[randHeight][randWidth] = 1;
+		//m_room[randHeight][randWidth] = 1;
 		//	タイルの数の設定
 		int tileNum = randWidth*randHeight;
 
@@ -59,22 +59,10 @@ int MapRoom::Initialize()
 		{
 			for (int j = 0; j < randWidth; j++)
 			{
-				if (i - 1 >= 0)
-					m_room[randHeight - 1][randWidth] = 1;	//上
-				if (i + 1 <= 4)
-					m_room[randHeight + 1][randWidth] = 1;	//下
-				if (j - 1 >= 0)
-					m_room[randHeight][randWidth - 1] = 1;	//左
-				if (j + 1 <= 4)
-					m_room[randHeight][randWidth + 1] = 1;	//右
-				if (i - 1 >= 0 && j - 1 >= 0)
-					m_room[randHeight - 1][randWidth - 1] = 1;
-				if (i + 1 <= 4 && j - 1 >= 0)
-					m_room[randHeight + 1][randWidth - 1] = 1;
-				if (i - 1 >= 0 && j + 1 <= 4)
-					m_room[randHeight - 1][randWidth + 1] = 1;
-				if (i + 1 <= 4 && j + 1 <= 4)
-					m_room[randHeight + 1][randWidth + 1] = 1;
+				//	範囲内にあるときタイルをつける
+				if ((0 <= i - 1) && (i - 1 <= 4) && (0 <= j - 1) && (j - 1 <= 4) &&
+					(0 <= i + 1) && (i + 1 <= 4) && (0 <= j + 1) && (j + 1 <= 4))
+					m_room[i][j] = 1;
 			}
 		}
 

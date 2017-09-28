@@ -58,34 +58,6 @@ int PlayScene::InitializeGame()
 		mapRoom[i]->Initialize();
 	}
 
-	/*for (int j = 0; j < 4; j++)
-	{
-		for (int k = 0; k < 5; k++)
-		{
-				mapRoom[i]->Initialize(j, k);
-		}
-	}*/
-	/*mapRoom[0]->Initialize(0, 0);
-	mapRoom[1]->Initialize(0, 1);
-	mapRoom[2]->Initialize(0, 2);
-	mapRoom[3]->Initialize(0, 3);
-	mapRoom[4]->Initialize(0, 4);
-	mapRoom[5]->Initialize(1, 0);
-	mapRoom[6]->Initialize(1, 1);
-	mapRoom[7]->Initialize(1, 2);
-	mapRoom[8]->Initialize(1, 3);
-	mapRoom[9]->Initialize(1, 4);
-	mapRoom[10]->Initialize(2, 0);
-	mapRoom[11]->Initialize(2, 1);
-	mapRoom[12]->Initialize(2, 2);
-	mapRoom[13]->Initialize(2, 3);
-	mapRoom[14]->Initialize(2, 4);
-	mapRoom[15]->Initialize(3, 0);
-	mapRoom[16]->Initialize(3, 1);
-	mapRoom[17]->Initialize(3, 2);
-	mapRoom[18]->Initialize(3, 3);
-	mapRoom[19]->Initialize(3, 4);*/
-
 	return 0;
 }
 

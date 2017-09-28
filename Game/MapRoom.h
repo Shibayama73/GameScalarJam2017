@@ -31,11 +31,4 @@ private:
 	int m_widthNum;
 	int m_heightNum;
 
-	//	ウィンドウの大きさ
-	//int m_outputWidth;
-	//int m_outputHeight;
-
-	//	存在する(透明ではない)
-	//bool IsPellucidity;
-
 };
