@@ -1,6 +1,6 @@
 //============================================================//
 //*名　前	MapRoom.h
-//*内　容	マップ部屋生成
+//*内　容	マップ1部屋生成
 //*日　付	2017.9.26
 //*更　新	2017.9.26
 //*制作者	N.Shibayama
@@ -12,23 +12,30 @@
 class MapRoom
 {
 public:
-	MapRoom();
-	int Initialize(int width, int height);
+	MapRoom(int heightNum, int widthNum);
+	int Initialize();
 	int Update();
 	int Draw(DirectX::SpriteBatch* spriteBatch);
 
 private:
-	int m_height;	//1部屋の高さ
-	int m_width;	//1部屋の幅
-	int m_room[20];	//部屋の数
+	int m_roomHeight;	//1部屋の高さ
+	int m_roomWidth;	//1部屋の幅
+	static int m_room[5][5];	//1部屋の数
 
-	//	大枠テクスチャ
+	//	1部屋の中の小分けされたテクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 	//	描画位置
 	DirectX::SimpleMath::Vector2 m_screenPos;
 	
+	//	部屋の位置
+	int m_widthNum;
+	int m_heightNum;
+
 	//	ウィンドウの大きさ
-	int m_outputWidth;
-	int m_outputHeight;
+	//int m_outputWidth;
+	//int m_outputHeight;
+
+	//	存在する(透明ではない)
+	//bool IsPellucidity;
 
 };

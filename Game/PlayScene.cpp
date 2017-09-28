@@ -44,8 +44,47 @@ int PlayScene::InitializeGame()
 		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/clear.png", resource.GetAddressOf(),
 			m_texture.ReleaseAndGetAddressOf()));
 
-	mapRoom = new MapRoom();
-	mapRoom->Initialize(m_outputWidth, m_outputHeight);
+	//	20個の部屋の生成
+	for (int j = 0; j < 4; j++)
+	{
+		for (int k = 0; k < 5; k++)
+		{
+			mapRoom[j*5+k] = new MapRoom(j, k);
+		}
+	}
+
+	for (int i = 0; i < 20; i++)
+	{
+		mapRoom[i]->Initialize();
+	}
+
+	/*for (int j = 0; j < 4; j++)
+	{
+		for (int k = 0; k < 5; k++)
+		{
+				mapRoom[i]->Initialize(j, k);
+		}
+	}*/
+	/*mapRoom[0]->Initialize(0, 0);
+	mapRoom[1]->Initialize(0, 1);
+	mapRoom[2]->Initialize(0, 2);
+	mapRoom[3]->Initialize(0, 3);
+	mapRoom[4]->Initialize(0, 4);
+	mapRoom[5]->Initialize(1, 0);
+	mapRoom[6]->Initialize(1, 1);
+	mapRoom[7]->Initialize(1, 2);
+	mapRoom[8]->Initialize(1, 3);
+	mapRoom[9]->Initialize(1, 4);
+	mapRoom[10]->Initialize(2, 0);
+	mapRoom[11]->Initialize(2, 1);
+	mapRoom[12]->Initialize(2, 2);
+	mapRoom[13]->Initialize(2, 3);
+	mapRoom[14]->Initialize(2, 4);
+	mapRoom[15]->Initialize(3, 0);
+	mapRoom[16]->Initialize(3, 1);
+	mapRoom[17]->Initialize(3, 2);
+	mapRoom[18]->Initialize(3, 3);
+	mapRoom[19]->Initialize(3, 4);*/
 
 	return 0;
 }
@@ -66,14 +105,21 @@ void PlayScene::RenderGame()
 	CommonStates m_states(devices.GetDevice().Get());
 	m_spriteBatch->Begin(SpriteSortMode_Deferred, m_states.NonPremultiplied());
 	//	クリアー
-	m_spriteBatch->Draw(m_texture.Get(), Vector2(263.5f, 324.0f), nullptr, Colors::White, 0.0f);
+	//m_spriteBatch->Draw(m_texture.Get(), Vector2(263.5f, 324.0f), nullptr, Colors::White, 0.0f);
 	
-	//	マップ部屋
-	mapRoom->Draw(&*m_spriteBatch);
+	for (int i = 0; i < 20; i++)
+	{
+		//	マップ部屋
+		mapRoom[i]->Draw(&*m_spriteBatch);
+	}
 
 	this->m_spriteBatch->End();
 }
 
 void PlayScene::Finalize()
 {
+	for (int i = 0; i < 20; i++)
+	{
+		delete mapRoom[i];
+	}
 }

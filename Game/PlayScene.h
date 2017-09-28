@@ -52,6 +52,7 @@ private:
 	DirectX::SimpleMath::Matrix m_view;
 	DirectX::SimpleMath::Matrix m_proj;
 
-	MapRoom* mapRoom;
+	//	20‚Ì•”‰®
+	MapRoom* mapRoom[20];
 
 };
