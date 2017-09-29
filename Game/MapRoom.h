@@ -20,7 +20,7 @@ public:
 private:
 	int m_roomHeight;	//1部屋の高さ
 	int m_roomWidth;	//1部屋の幅
-	static int m_room[5][5];	//1部屋の数
+	int m_room[5][5];	//1部屋の数
 
 	//	1部屋の中の小分けされたテクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;

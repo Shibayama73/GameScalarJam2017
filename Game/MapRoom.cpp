@@ -18,10 +18,17 @@ using Microsoft::WRL::ComPtr;
 //	1部屋の位置番号設定
 //int MapRoom::m_room[5][5] = { { 0,1,2,3,4 },{ 5,6,7,8,9 },{ 10,11,12,13,14 },{ 15,16,17,18,19 },{ 20,21,22,23,24 } };
 //	1部屋の地形初期無し設定
-int MapRoom::m_room[5][5] = { { 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 } };
 
 MapRoom::MapRoom(int heightNum, int widthNum) :m_roomHeight(30), m_roomWidth(32),m_heightNum(heightNum),m_widthNum(widthNum)
 {
+	for (int i = 0; i < 5; ++i)
+	{
+		for (int j = 0; j < 5; ++j)
+		{
+			m_room[i][j] = 0;
+		}
+	}
+	//m_room[5][5] = { { 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 },{ 0,0,0,0,0 } };
 }
 
 //	引数(3,4)まで
@@ -40,17 +47,16 @@ int MapRoom::Initialize()
 			m_texture.ReleaseAndGetAddressOf()));
 
 	//	地形部分の設定
-	srand((unsigned int)time_t(NULL));
 	std::random_device rnd;
 
 	//	部屋内に地形が存在するか決める
-	int existence = rnd() % 5;
+	int existence = rand() % 5;
 	//	存在していたら
 	if (existence < 2)
 	{
 		//	軸を決める
-		int randWidth = rnd() % 5;
-		int randHeight = rnd() % 5;
+		int randWidth = 1 + (rand() % 5);
+		int randHeight = 1 + (rand() % 5);
 		//m_room[randHeight][randWidth] = 1;
 		//	タイルの数の設定
 		int tileNum = randWidth*randHeight;

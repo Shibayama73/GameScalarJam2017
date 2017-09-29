@@ -7,6 +7,7 @@
 //============================================================//
 #include "PlayScene.h"
 #include <WICTextureLoader.h>
+#include <time.h>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -44,19 +45,24 @@ int PlayScene::InitializeGame()
 		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/clear.png", resource.GetAddressOf(),
 			m_texture.ReleaseAndGetAddressOf()));
 
+	//	地形部分の設定
+	srand((unsigned int)time(NULL));
+
 	//	20個の部屋の生成
 	for (int j = 0; j < 4; j++)
 	{
 		for (int k = 0; k < 5; k++)
 		{
-			mapRoom[j*5+k] = new MapRoom(j, k);
+			//mapRoom[j * 5 + k] = new MapRoom(j, k);
+			mapRoom[j][k] = new MapRoom(j, k);
+			mapRoom[j][k]->Initialize();
 		}
 	}
 
-	for (int i = 0; i < 20; i++)
-	{
-		mapRoom[i]->Initialize();
-	}
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	mapRoom[i]->Initialize();
+	//}
 
 	return 0;
 }
@@ -79,10 +85,13 @@ void PlayScene::RenderGame()
 	//	クリアー
 	//m_spriteBatch->Draw(m_texture.Get(), Vector2(263.5f, 324.0f), nullptr, Colors::White, 0.0f);
 	
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		//	マップ部屋
-		mapRoom[i]->Draw(&*m_spriteBatch);
+		for (int j = 0; j < 5; j++)
+		{
+			//	マップ部屋
+			mapRoom[i][j]->Draw(&*m_spriteBatch);
+		}
 	}
 
 	this->m_spriteBatch->End();
@@ -90,8 +99,12 @@ void PlayScene::RenderGame()
 
 void PlayScene::Finalize()
 {
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		delete mapRoom[i];
+		for (int j = 0; j < 5; j++)
+		{
+			delete mapRoom[i][j];
+		}
 	}
+
 }
