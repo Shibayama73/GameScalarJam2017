@@ -56,14 +56,22 @@ int PlayScene::InitializeGame()
 			//mapRoom[j * 5 + k] = new MapRoom(j, k);
 			mapRoom[j][k] = new MapRoom(j, k);
 			mapRoom[j][k]->Initialize();
+			//	プレイヤー生成
+			player = new Player(mapRoom[j][k]);
 		}
 	}
+
+	//	プレイヤー
+	player->Initialize();
 
 	return 0;
 }
 
 int PlayScene::UpdateGame()
 {
+	//	プレイヤー
+	player->Update();
+
 	return 0;
 }
 
@@ -88,6 +96,9 @@ void PlayScene::RenderGame()
 			mapRoom[i][j]->Draw(&*m_spriteBatch);
 		}
 	}
+
+	//	プレイヤー
+	player->Draw(&*m_spriteBatch);
 
 	this->m_spriteBatch->End();
 }

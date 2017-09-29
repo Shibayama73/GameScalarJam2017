@@ -178,6 +178,7 @@
     <ClInclude Include="KeyConvertList.h" />
     <ClInclude Include="KeyList.h" />
     <ClInclude Include="MapRoom.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SceneBase.h" />
@@ -198,6 +199,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

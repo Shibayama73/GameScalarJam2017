@@ -15,6 +15,7 @@
 //#include <keyboard.h>
 #include "Keyboards.h"
 #include "MapRoom.h"
+#include "Player.h"
 
 class PlayScene :public SceneBase
 {
@@ -54,5 +55,8 @@ private:
 
 	//	20‚Ì•”‰®
 	MapRoom* mapRoom[4][5];
+
+	//	ƒvƒŒƒCƒ„[
+	Player* player;
 
 };
