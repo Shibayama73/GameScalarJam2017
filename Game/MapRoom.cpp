@@ -19,7 +19,7 @@ using Microsoft::WRL::ComPtr;
 //int MapRoom::m_room[5][5] = { { 0,1,2,3,4 },{ 5,6,7,8,9 },{ 10,11,12,13,14 },{ 15,16,17,18,19 },{ 20,21,22,23,24 } };
 //	1部屋の地形初期無し設定
 
-MapRoom::MapRoom(int heightNum, int widthNum) :m_roomHeight(30), m_roomWidth(32),m_heightNum(heightNum),m_widthNum(widthNum)
+MapRoom::MapRoom(int heightNum, int widthNum) :m_roomHeight(30), m_roomWidth(32),m_heightNum(heightNum),m_widthNum(widthNum),m_existence(false)
 {
 	for (int i = 0; i < 5; ++i)
 	{
@@ -54,9 +54,16 @@ int MapRoom::Initialize()
 	//	存在していたら
 	if (existence < 2)
 	{
+		m_existence = true;
+
 		//	軸を決める
 		int randWidth = 1 + (rand() % 5);
 		int randHeight = 1 + (rand() % 5);
+
+		//	地形生成時の軸
+		m_tile.axisHeight = randHeight;
+		m_tile.axisWidth = randWidth;
+
 		//m_room[randHeight][randWidth] = 1;
 		//	タイルの数の設定
 		int tileNum = randWidth*randHeight;
@@ -116,4 +123,35 @@ int MapRoom::Draw(SpriteBatch* spriteBatch)
 	}
 
 	return 0;
+}
+
+//	一部屋の情報取得
+int MapRoom::Get1Room()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			return m_room[i][j];
+		}
+	}
+}
+
+//	地形生成時の軸の高さ取得
+int MapRoom::GetTileAxisHeight()
+{
+	return m_tile.axisHeight;
+}
+
+//	地形生成時の軸の幅取得
+int MapRoom::GetTileAxisWidth()
+{
+	return m_tile.axisWidth;
+}
+
+//	地形が存在しているか
+//	有(true)、無(false)
+bool MapRoom::IsTileExistence()
+{
+	return m_existence;
 }

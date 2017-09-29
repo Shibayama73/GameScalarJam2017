@@ -17,10 +17,28 @@ public:
 	int Update();
 	int Draw(DirectX::SpriteBatch* spriteBatch);
 
+	//	一部屋の情報取得
+	int Get1Room();
+	//	地形生成時の軸の高さ取得
+	int GetTileAxisHeight();
+	//	地形生成時の軸の幅取得
+	int GetTileAxisWidth();
+	//	地形の存在有無
+	bool IsTileExistence();
+
 private:
 	int m_roomHeight;	//1部屋の高さ
 	int m_roomWidth;	//1部屋の幅
 	int m_room[5][5];	//1部屋の数
+
+	struct Tile{
+		//	地形生成時の軸の高さ
+		int axisHeight;
+		//	地形生成時の軸の幅
+		int axisWidth;
+	};
+
+	Tile m_tile;
 
 	//	1部屋の中の小分けされたテクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
@@ -30,5 +48,8 @@ private:
 	//	部屋の位置
 	int m_widthNum;
 	int m_heightNum;
+
+	//	地形の存在有無
+	bool m_existence;
 
 };

@@ -59,11 +59,6 @@ int PlayScene::InitializeGame()
 		}
 	}
 
-	//for (int i = 0; i < 20; i++)
-	//{
-	//	mapRoom[i]->Initialize();
-	//}
-
 	return 0;
 }
 
