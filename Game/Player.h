@@ -9,13 +9,13 @@
 #include <SpriteBatch.h>
 #include <simplemath.h>
 #include "Devices.h"
-#include "MapRoom.h"
 #include "Keyboards.h"
+#include "Map.h"
 
 class Player
 {
 public:
-	Player(MapRoom* mapRoom);
+	Player(Map* map);
 	int Initialize();
 	int Update();
 	int Draw(DirectX::SpriteBatch* spriteBatch);
@@ -32,5 +32,6 @@ private:
 	int m_position[20][25];
 
 	//	ƒ}ƒbƒv•”‰®
-	MapRoom* m_mapRoom;
+	Map* m_map;
+
 };

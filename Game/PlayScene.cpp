@@ -48,20 +48,12 @@ int PlayScene::InitializeGame()
 	//	地形部分の設定
 	srand((unsigned int)time(NULL));
 
-	//	20個の部屋の生成
-	for (int j = 0; j < 4; j++)
-	{
-		for (int k = 0; k < 5; k++)
-		{
-			//mapRoom[j * 5 + k] = new MapRoom(j, k);
-			mapRoom[j][k] = new MapRoom(j, k);
-			mapRoom[j][k]->Initialize();
-			//	プレイヤー生成
-			player = new Player(mapRoom[j][k]);
-		}
-	}
+	//	マップ生成
+	map = new Map();
+	map->Initialize();
 
-	//	プレイヤー
+	//	プレイヤー生成
+	player = new Player(&*map);
 	player->Initialize();
 
 	return 0;
@@ -88,15 +80,8 @@ void PlayScene::RenderGame()
 	//	クリアー
 	//m_spriteBatch->Draw(m_texture.Get(), Vector2(263.5f, 324.0f), nullptr, Colors::White, 0.0f);
 	
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			//	マップ部屋
-			mapRoom[i][j]->Draw(&*m_spriteBatch);
-		}
-	}
-
+	//	マップ
+	map->Draw(&*m_spriteBatch);
 	//	プレイヤー
 	player->Draw(&*m_spriteBatch);
 
@@ -105,12 +90,4 @@ void PlayScene::RenderGame()
 
 void PlayScene::Finalize()
 {
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			delete mapRoom[i][j];
-		}
-	}
-
 }

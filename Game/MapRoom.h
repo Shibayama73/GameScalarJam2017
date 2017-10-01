@@ -17,8 +17,8 @@ public:
 	int Update();
 	int Draw(DirectX::SpriteBatch* spriteBatch);
 
-	//	一部屋の情報取得
-	int Get1Room();
+	//	一部屋の地形状態取得
+	int Get1RoomTile(int height,int width);
 	//	地形生成時の軸の高さ取得
 	int GetTileAxisHeight();
 	//	地形生成時の軸の幅取得

@@ -125,16 +125,21 @@ int MapRoom::Draw(SpriteBatch* spriteBatch)
 	return 0;
 }
 
-//	一部屋の情報取得
-int MapRoom::Get1Room()
+//	一部屋の地形状態取得
+//	一部屋5×5の1マスの状態取得
+int MapRoom::Get1RoomTile(int height, int width)
 {
-	for (int i = 0; i < 5; i++)
+	int room = 0;
+
+	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < width; j++)
 		{
-			return m_room[i][j];
+			room = m_room[i][j];
 		}
 	}
+	return room;
+
 }
 
 //	地形生成時の軸の高さ取得

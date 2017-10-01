@@ -177,6 +177,7 @@
     <ClInclude Include="Keyboards.h" />
     <ClInclude Include="KeyConvertList.h" />
     <ClInclude Include="KeyList.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MapRoom.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Keyboards.cpp" />
     <ClCompile Include="KeyConvertList.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapRoom.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

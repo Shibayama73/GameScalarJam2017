@@ -13,7 +13,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 using Microsoft::WRL::ComPtr;
 
-Player::Player(MapRoom* mapRoom):m_width(32),m_height(30),m_mapRoom(mapRoom)
+Player::Player(Map* map):m_width(32),m_height(30),m_map(map)
 {
 	for (int i = 0; i < 20; i++)
 	{
@@ -47,10 +47,13 @@ int Player::Update()
 	key.TrackerUpdate();
 
 	//	移動範囲
+	//m_map->Get1RoomTile(1, 1);
 
 	//	移動(上下左右)
 	if (key.CheckKey('W'))
 	{
+		//＊テスト＊指定された部屋内の地形の配列に地形があるかどうか
+		if (m_map->Get1Room(0, 0)->Get1RoomTile(2,2)==1)
 		m_height -= 1;
 	}
 	if (key.CheckKey('S'))

@@ -16,6 +16,7 @@
 #include "Keyboards.h"
 #include "MapRoom.h"
 #include "Player.h"
+#include "Map.h"
 
 class PlayScene :public SceneBase
 {
@@ -32,11 +33,6 @@ private:
 	//	出力高さ
 	int m_outputHeight;
 
-	//	キーボード
-//	std::unique_ptr<DirectX::Keyboard> m_keyboard;
-	//	トラッカー
-//	std::unique_ptr<DirectX::Keyboard::KeyboardStateTracker> m_tracker;
-
 	//	スプライトバッチ
 	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 	//	フォント
@@ -49,13 +45,11 @@ private:
 	//	クリアーテクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 
-
 	DirectX::SimpleMath::Matrix m_view;
 	DirectX::SimpleMath::Matrix m_proj;
 
-	//	20の部屋
-	MapRoom* mapRoom[4][5];
-
+	//	マップ(20の部屋)
+	Map* map;
 	//	プレイヤー
 	Player* player;
 
