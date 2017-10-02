@@ -13,6 +13,9 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 using Microsoft::WRL::ComPtr;
 
+const int HEIGHT = 20;
+const int WIDTH = 25;
+
 Player::Player(Map* map):m_width(32),m_height(30),m_map(map)
 {
 	for (int i = 0; i < 20; i++)
@@ -34,8 +37,9 @@ int Player::Initialize()
 		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/test4.png", resource.GetAddressOf(),
 			m_texture.ReleaseAndGetAddressOf()));
 
-	//※あと
 	//	開始位置の設定
+	m_PosHeight = 1;
+	m_PosWidth = 1;
 
 	return 0;
 }
@@ -53,20 +57,38 @@ int Player::Update()
 	if (key.CheckKey('W'))
 	{
 		//＊テスト＊指定された部屋内の地形の配列に地形があるかどうか
-		if (m_map->Get1Room(0, 0)->Get1RoomTile(2,2)==1)
-		m_height -= 1;
+		//if (m_map->Get1Room(0, 0)->Get1RoomTile(2,2)==1)
+		//m_height -= 1;
+
+		//	1マス先に地形が存在していたら進む
+		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile((m_PosHeight % 5) - 1, m_PosWidth % 5) == 1)
+		m_PosHeight -= 1;
+		
 	}
 	if (key.CheckKey('S'))
 	{
-		m_height += 1;
+		//m_height += 1;
+		//	1マス先に地形が存在していたら進む
+		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile((m_PosHeight % 5) + 1, m_PosWidth % 5) == 1)
+		m_PosHeight += 1;
 	}
 	if (key.CheckKey('A'))
 	{
-		m_width -= 1;
+		//m_width -= 1;
+		//	1マス先に地形が存在していたら進む
+		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile(m_PosHeight % 5, (m_PosWidth % 5) - 1) == 1)
+		m_PosWidth -= 1;
 	}
 	if (key.CheckKey('D'))
 	{
-		m_width += 1;
+		//m_width += 1;
+		//	1マス先に地形が存在していたら進む
+		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile(m_PosHeight % 5, (m_PosWidth % 5) + 1) == 1)
+		m_PosWidth += 1;
 	}
 
 	return 0;
@@ -74,6 +96,6 @@ int Player::Update()
 
 int Player::Draw(DirectX::SpriteBatch * spriteBatch)
 {
-	spriteBatch->Draw(m_texture.Get(), Vector2(m_width, m_height), nullptr, Colors::White, 0.0f);
+	spriteBatch->Draw(m_texture.Get(), Vector2(m_PosWidth*m_width, m_PosHeight*m_height), nullptr, Colors::White, 0.0f);
 	return 0;
 }

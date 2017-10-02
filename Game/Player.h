@@ -30,6 +30,10 @@ private:
 
 	//	位置
 	int m_position[20][25];
+	//	幅
+	int m_PosWidth;
+	//	高さ
+	int m_PosHeight;
 
 	//	マップ部屋
 	Map* m_map;

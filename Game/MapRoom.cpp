@@ -131,9 +131,9 @@ int MapRoom::Get1RoomTile(int height, int width)
 {
 	int room = 0;
 
-	for (int i = 0; i < height; i++)
+	for (int i = 0; i <= height; i++)
 	{
-		for (int j = 0; j < width; j++)
+		for (int j = 0; j <= width; j++)
 		{
 			room = m_room[i][j];
 		}
