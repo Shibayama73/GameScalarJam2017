@@ -2,7 +2,7 @@
 //*名　前	MapRoom.cpp
 //*内　容	マップ部屋生成
 //*日　付	2017.9.26
-//*更　新	2017.9.26
+//*更　新	2017.10.3
 //*制作者	N.Shibayama
 //============================================================//
 #include "pch.h"
@@ -43,7 +43,7 @@ int MapRoom::Initialize()
 	//	リソース読み込み
 	ComPtr<ID3D11Resource> resource;
 	DX::ThrowIfFailed(
-		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/test3.png", resource.GetAddressOf(),
+		CreateWICTextureFromFile(devices.GetDevice().Get(), L"Resources/tile.png", resource.GetAddressOf(),
 			m_texture.ReleaseAndGetAddressOf()));
 
 	//	地形部分の設定
@@ -57,8 +57,8 @@ int MapRoom::Initialize()
 		m_existence = true;
 
 		//	軸を決める
-		int randWidth = 2 + (rand() % 5);
-		int randHeight = 2 + (rand() % 5);
+		int randWidth = 1 + (rand() % 5);
+		int randHeight = 1 + (rand() % 5);
 
 		//	地形生成時の軸
 		m_tile.axisHeight = randHeight;
@@ -68,13 +68,14 @@ int MapRoom::Initialize()
 		//	タイルの数の設定
 		//int tileNum = randWidth*randHeight;
 
-		for (int i = 0; i < randHeight; i++)
+		for (int i = 0; i <= randHeight; i++)
 		{
-			for (int j = 0; j < randWidth; j++)
+			for (int j = 0; j <= randWidth; j++)
 			{
 				//	範囲内にあるときタイルをつける
-				if ((0 <= i - 1) && (i - 1 <= 4) && (0 <= j - 1) && (j - 1 <= 4) &&
-					(0 <= i + 1) && (i + 1 <= 4) && (0 <= j + 1) && (j + 1 <= 4))
+				if (((0 <= i - 1) && (i - 1 <= 4) && (0 <= j - 1) && (j - 1 <= 4) &&
+					(0 <= i + 1) && (i + 1 <= 4) && (0 <= j + 1) && (j + 1 <= 4)) ||
+					(i == 0 || j == 0 || i == 4 || j == 4))
 					m_room[i][j] = 1;
 			}
 		}

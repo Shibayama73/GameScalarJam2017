@@ -225,7 +225,7 @@ void Game::Clear()
 	auto& devices = Devices::GetInstance();
     // Clear the views.
 	//devices.GetDeviceContext()->ClearRenderTargetView(devices.GetRenderTargetView().Get(), Colors::CornflowerBlue);
-	devices.GetDeviceContext()->ClearRenderTargetView(devices.GetRenderTargetView().Get(), Colors::Gray);
+	devices.GetDeviceContext()->ClearRenderTargetView(devices.GetRenderTargetView().Get(), Colors::LightBlue);
     devices.GetDeviceContext()->ClearDepthStencilView(devices.GetDepthStencilView().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
     devices.GetDeviceContext()->OMSetRenderTargets(1, devices.GetRenderTargetView().GetAddressOf(), devices.GetDepthStencilView().Get());

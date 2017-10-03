@@ -20,6 +20,8 @@ public:
 
 	//	一部屋の地形状態取得
 	MapRoom* Get1Room(int height, int width);
+	//	一部屋の地形存在有無
+	bool Is1RoomTile(int height, int width);
 
 private:
 	int m_heightNum;

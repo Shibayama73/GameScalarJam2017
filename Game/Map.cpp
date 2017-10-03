@@ -75,3 +75,20 @@ MapRoom* Map::Get1Room(int height, int width)
 	//}
 	//return &*room;
 }
+
+//＊内容＊		一部屋の地形存在有無
+//＊戻り値＊	有り(true)無し(false)
+bool Map::Is1RoomTile(int height, int width)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (m_mapRoom[height][width]->Get1RoomTile(i, j) == 1)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}

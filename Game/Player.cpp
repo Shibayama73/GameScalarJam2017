@@ -41,6 +41,7 @@ int Player::Initialize()
 	//m_PosHeight = 1;
 	//m_PosWidth = 1;
 
+	//	始めに発見した地形の位置を初期位置として設定する
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 5; j++) {
 			for (int k = 0; k < 5; k++) {
@@ -88,7 +89,7 @@ int Player::Update()
 			->Get1RoomTile(height + 1.0f, width) == 1.0f)*/
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
 			->Get1RoomTile(((int)m_PosHeight % 5) + 1.0f, (int)m_PosWidth % 5) == 1.0f)
-		m_PosHeight += 0.1f;
+			m_PosHeight += 0.1f;
 	}
 	if (key.CheckKey('A'))
 	{
@@ -97,14 +98,14 @@ int Player::Update()
 			->Get1RoomTile(height, width) == 1)*/
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
 			->Get1RoomTile(((int)m_PosHeight % 5), (int)m_PosWidth % 5) == 1.0f)
-		m_PosWidth -= 0.1f;
+			m_PosWidth -= 0.1f;
 	}
 	if (key.CheckKey('D'))
 	{
 		//	1マス先に地形が存在していたら進む
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
 			->Get1RoomTile((int)m_PosHeight % 5, ((int)m_PosWidth % 5) + 1.0f) == 1.0f)
-		m_PosWidth += 0.1f;
+			m_PosWidth += 0.1f;
 	}
 
 	return 0;
