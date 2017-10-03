@@ -38,8 +38,23 @@ int Player::Initialize()
 			m_texture.ReleaseAndGetAddressOf()));
 
 	//	開始位置の設定
-	m_PosHeight = 1;
-	m_PosWidth = 1;
+	//m_PosHeight = 1;
+	//m_PosWidth = 1;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 5; j++) {
+			for (int k = 0; k < 5; k++) {
+				for (int l = 0; l < 5; l++) {
+					if (m_map->Get1Room(i, j)->Get1RoomTile(k, l) == 1)
+					{
+						m_PosHeight = ((i * 150) + (k * 30)) / 30;
+						m_PosWidth = ((j * 160) + (l * 32)) / 32;
+						return 0;
+					}
+				}
+			}
+		}
+	}
 
 	return 0;
 }
@@ -53,42 +68,43 @@ int Player::Update()
 	//	移動範囲
 	//m_map->Get1RoomTile(1, 1);
 
+//	float height = fmodf(m_PosHeight, 5.0f);
+//	float width = fmodf(m_PosWidth, 5.0f);
+
 	//	移動(上下左右)
 	if (key.CheckKey('W'))
 	{
-		//＊テスト＊指定された部屋内の地形の配列に地形があるかどうか
-		//if (m_map->Get1Room(0, 0)->Get1RoomTile(2,2)==1)
-		//m_height -= 1;
-
 		//	1マス先に地形が存在していたら進む
+	/*	if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile(height, width) == 1)*/
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
-			->Get1RoomTile((m_PosHeight % 5) - 1, m_PosWidth % 5) == 1)
-		m_PosHeight -= 1;
-		
+			->Get1RoomTile(((int)m_PosHeight % 5), (int)m_PosWidth % 5) == 1.0f)
+			m_PosHeight -= 0.1f;
 	}
 	if (key.CheckKey('S'))
 	{
-		//m_height += 1;
 		//	1マス先に地形が存在していたら進む
+		/*if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile(height + 1.0f, width) == 1.0f)*/
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
-			->Get1RoomTile((m_PosHeight % 5) + 1, m_PosWidth % 5) == 1)
-		m_PosHeight += 1;
+			->Get1RoomTile(((int)m_PosHeight % 5) + 1.0f, (int)m_PosWidth % 5) == 1.0f)
+		m_PosHeight += 0.1f;
 	}
 	if (key.CheckKey('A'))
 	{
-		//m_width -= 1;
 		//	1マス先に地形が存在していたら進む
+	/*	if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
+			->Get1RoomTile(height, width) == 1)*/
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
-			->Get1RoomTile(m_PosHeight % 5, (m_PosWidth % 5) - 1) == 1)
-		m_PosWidth -= 1;
+			->Get1RoomTile(((int)m_PosHeight % 5), (int)m_PosWidth % 5) == 1.0f)
+		m_PosWidth -= 0.1f;
 	}
 	if (key.CheckKey('D'))
 	{
-		//m_width += 1;
 		//	1マス先に地形が存在していたら進む
 		if (m_map->Get1Room(m_PosHeight / 5, m_PosWidth / 5)
-			->Get1RoomTile(m_PosHeight % 5, (m_PosWidth % 5) + 1) == 1)
-		m_PosWidth += 1;
+			->Get1RoomTile((int)m_PosHeight % 5, ((int)m_PosWidth % 5) + 1.0f) == 1.0f)
+		m_PosWidth += 0.1f;
 	}
 
 	return 0;

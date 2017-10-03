@@ -50,15 +50,15 @@ int MapRoom::Initialize()
 	std::random_device rnd;
 
 	//	部屋内に地形が存在するか決める
-	int existence = rand() % 5;
+	//int existence = rand() % 5;
 	//	存在していたら
-	if (existence < 2)
+	if (true)//existence < 2)
 	{
 		m_existence = true;
 
 		//	軸を決める
-		int randWidth = 1 + (rand() % 5);
-		int randHeight = 1 + (rand() % 5);
+		int randWidth = 2 + (rand() % 5);
+		int randHeight = 2 + (rand() % 5);
 
 		//	地形生成時の軸
 		m_tile.axisHeight = randHeight;
@@ -66,7 +66,7 @@ int MapRoom::Initialize()
 
 		//m_room[randHeight][randWidth] = 1;
 		//	タイルの数の設定
-		int tileNum = randWidth*randHeight;
+		//int tileNum = randWidth*randHeight;
 
 		for (int i = 0; i < randHeight; i++)
 		{
@@ -129,16 +129,17 @@ int MapRoom::Draw(SpriteBatch* spriteBatch)
 //	一部屋5×5の1マスの状態取得
 int MapRoom::Get1RoomTile(int height, int width)
 {
-	int room = 0;
+	return m_room[height][width];
 
-	for (int i = 0; i <= height; i++)
-	{
-		for (int j = 0; j <= width; j++)
-		{
-			room = m_room[i][j];
-		}
-	}
-	return room;
+	//int room = 0;
+	//for (int i = 0; i <= height; i++)
+	//{
+	//	for (int j = 0; j <= width; j++)
+	//	{
+	//		room = m_room[i][j];
+	//	}
+	//}
+	//return room;
 
 }
 
@@ -159,4 +160,10 @@ int MapRoom::GetTileAxisWidth()
 bool MapRoom::IsTileExistence()
 {
 	return m_existence;
+}
+
+//	指定された地形を作る
+void MapRoom::ChangeOnTile(int height, int width)
+{
+	m_room[height][width] = 1;
 }

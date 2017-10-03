@@ -25,6 +25,8 @@ public:
 	int GetTileAxisWidth();
 	//	地形の存在有無
 	bool IsTileExistence();
+	//	指定された地形を作る
+	void ChangeOnTile(int height, int width);
 
 private:
 	int m_roomHeight;	//1部屋の高さ

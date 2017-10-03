@@ -63,14 +63,15 @@ void Map::Finalize()
 //	ˆê•”‰®‚Ì’nŒ`ó‘Ôæ“¾
 MapRoom* Map::Get1Room(int height, int width)
 {
-	MapRoom* room = nullptr;
+	return m_mapRoom[height][width];
 
-	for (int i = 0; i <= height; i++)
-	{
-		for (int j = 0; j <= width; j++)
-		{
-			room = &*m_mapRoom[i][j];
-		}
-	}
-	return &*room;
+	//MapRoom* room = nullptr;
+	//for (int i = 0; i <= height; i++)
+	//{
+	//	for (int j = 0; j <= width; j++)
+	//	{
+	//		room = &*m_mapRoom[i][j];
+	//	}
+	//}
+	//return &*room;
 }
